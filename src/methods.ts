@@ -79,12 +79,15 @@ export function fixedPoint({
     return { result: average, index };
 
   result = average;
+  console.log("f", f(result));
+  console.log("df", df(result));
 
-  // while (Math.abs(f(result)) > toleranceValue) {
-  //     result = df(result);
-  //     console.log('result',resul)
-  //   index++;
-  // }
+  // debugger
+
+  while (Math.abs(f(result)) > toleranceValue && result !== Infinity) {
+    result = df(result);
+    index++;
+  }
   return { result, index };
 }
 
@@ -99,7 +102,7 @@ export function secant({ f, arr, toleranceValue }: SecantParameters) {
 
   let [a, b] = arr;
 
-  while (f(result) > toleranceValue) {
+  while ((result ===null || f(result) > toleranceValue)) {
     result = (a * f(b) - b * f(a)) / (f(b) - f(a) || 1);
     a = b;
     b = result;

@@ -49,7 +49,7 @@ export default function App() {
                 <span>{result.toFixed(3)}</span>
               </div> */}
               <div className={"result"}>
-                <div className={"label"}>Resultado:</div>
+                <div className={"label"}>Raiz:</div>
                 <span>{result?.toFixed(3)}</span>
               </div>
               <div className={"result"}>
