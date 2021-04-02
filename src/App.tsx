@@ -40,7 +40,7 @@ export default function App() {
   return (
     <div className="App">
       <div className={"container"}>
-        {Object.values(state).map(({title,result,index}:any) => (
+        {Object.values(state).map(({ title, result, index }: any) => (
           <>
             <h2>{title}</h2>
             <div className={"resultContainer"}>
@@ -50,11 +50,8 @@ export default function App() {
               </div> */}
               <div className={"result"}>
                 <div className={"label"}>Raiz:</div>
-                <span>{result?.toFixed(3)}</span>
-              </div>
-              <div className={"result"}>
-                <div className={"label"}>N° de Iterações:</div>
-                <span>{index}</span>
+                <span>{result ? result.toFixed(3) : "Não Converge "}</span>
+                {/* <span>{index}</span> */}
               </div>
             </div>
           </>

@@ -85,10 +85,13 @@ export function fixedPoint({
   // debugger
 
   while (Math.abs(f(result)) > toleranceValue && result !== Infinity) {
+    console.log("");
+    console.log("f", f(result));
+    console.log("df", df(result));
     result = df(result);
     index++;
   }
-  return { result, index };
+  return { result: Math.abs(result) === Infinity ? null : result, index };
 }
 
 interface SecantParameters {
@@ -102,7 +105,7 @@ export function secant({ f, arr, toleranceValue }: SecantParameters) {
 
   let [a, b] = arr;
 
-  while ((result ===null || f(result) > toleranceValue)) {
+  while (result === null || f(result) > toleranceValue) {
     result = (a * f(b) - b * f(a)) / (f(b) - f(a) || 1);
     a = b;
     b = result;
