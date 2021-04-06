@@ -1,9 +1,17 @@
+// export const newthonExample = {
+//   f: (x: number) => Math.pow(x, 3) - Math.cos(x),
+//   df: (x: number) => 3 * Math.pow(x, 2) + Math.sin(x),
+//   toleranceValue: Math.pow(10, -6),
+//   initialValue: 1.5,
+//   maxIterations: 3
+// };
+
 export const newthonExample = {
-  f: (x: number) => Math.pow(x, 3) - Math.cos(x),
-  df: (x: number) => 3 * Math.pow(x, 2) + Math.sin(x),
-  toleranceValue: Math.pow(10, -6),
-  initialValue: 1.5,
-  maxIterations: 3
+  f: (x: number) => x * Math.pow(Math.E, x) - 2,
+  df: (x: number) => Math.pow(Math.E, x) * x + Math.pow(Math.E, x),
+  maxIterations: 10,
+  initialValue: 1,
+  toleranceValue: 0.04
 };
 
 export const bisectionExample = {

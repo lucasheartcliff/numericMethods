@@ -1,3 +1,7 @@
+const isValidPoints = ([a, b]: number[], f: Function) => {
+  return f(a) * f(b) < 0;
+};
+
 interface NewthonRalphParameters {
   f: Function;
   df: Function;
@@ -36,7 +40,7 @@ export function bisection({ f, arr, toleranceValue }: BisectionParameters) {
 
   let index = 0;
 
-  if (f(a) * f(b) < 0) {
+  if (isValidPoints(arr, f)) {
     while (
       Math.abs(b - a) / 2 >= toleranceValue ||
       result === null ||
@@ -73,23 +77,21 @@ export function fixedPoint({
   const [a, b] = arr;
   let index = 0;
 
-  const average = (a + b) / 2;
+  if (isValidPoints(arr, f)) {
+    const average = (a + b) / 2;
 
-  if (average <= toleranceValue || Math.abs(f(average)) <= toleranceValue)
-    return { result: average, index };
+    if (average <= toleranceValue || Math.abs(f(average)) <= toleranceValue)
+      return { result: average, index };
 
-  result = average;
-  console.log("f", f(result));
-  console.log("df", df(result));
+    result = average;
 
-  // debugger
-
-  while (Math.abs(f(result)) > toleranceValue && result !== Infinity) {
-    console.log("");
-    console.log("f", f(result));
-    console.log("df", df(result));
-    result = df(result);
-    index++;
+    while (
+      Math.abs(f(result) -result) > toleranceValue &&
+      result !== Infinity
+    ) {
+      result = f(result);
+      index++;
+    }
   }
   return { result: Math.abs(result) === Infinity ? null : result, index };
 }
